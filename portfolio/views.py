@@ -1,3 +1,66 @@
 from django.shortcuts import render
+from .models import Profile, Skill, Project, Blog, Contact, SocialMedia
 
-# Create your views here.
+
+def home(request):
+    profile = Profile.objects.first()
+
+    context = {
+        'profile': profile
+    }
+
+    return render(request, 'home.html', context)
+
+
+def about(request):
+    profile = Profile.objects.first()
+
+    context = {
+        'profile': profile
+    }
+
+    return render(request, 'about.html', context)
+
+
+def skills(request):
+    skills = Skill.objects.all()
+
+    context = {
+        'skills': skills
+    }
+
+    return render(request, 'skills.html', context)
+
+
+def projects(request):
+    projects = Project.objects.all()
+
+    context = {
+        'projects': projects
+    }
+
+    return render(request, 'projects.html', context)
+
+
+def blogs(request):
+    blogs = Blog.objects.all().order_by('-publish_date')
+
+    context = {
+        'blogs': blogs
+    }
+
+    return render(request, 'blogs.html', context)
+
+
+def contact(request):
+    contact_info = Contact.objects.first()
+    social_media = SocialMedia.objects.all()
+
+    context = {
+        'contact': contact_info,
+        'social_media': social_media
+    }
+
+    return render(request, 'contact.html', context)
+
+
