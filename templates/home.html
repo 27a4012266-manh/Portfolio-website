@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Cá Nhân - Trang Chủ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="logo">{{ profile.fullname }}</div>
+        <div class="nav-center">
+            <a href="{% url 'home' %}" class="active">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'skills' %}">Skills</a>
+            <a href="{% url 'projects' %}">Projects</a>
+            <a href="{% url 'blog' %}">Blog</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </div>
+        <a href="{{ profile.cv_file.url }}" class="btn-download-header" target="_blank">
+            <i class="fa-solid fa-download"></i> Download CV
+        </a>
+    </header>
+
+    <main class="hero-container">
+        <div class="hero-text">
+            <span class="welcome-badge">👋 Xin chào, mình là</span>
+            <h1>{{ profile.fullname }}</h1>
+            <h2>Full Stack Developer & Web Designer</h2>
+            <p>{{ profile.bio }}</p>
+            <div class="cta-buttons">
+                <a href="{% url 'about' %}" class="btn-primary">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="{{ profile.cv_file.url }}" class="btn-secondary" target="_blank">Tải CV <i class="fa-solid fa-download" style="font-size: 14px;"></i></a>
+            </div>
+            <div class="social-links">
+        {% for social in socials %}
+
+            {% if social.platform == 'LinkedIn' %}
+                <a href="{{ social.link }}" target="_blank">
+                    <i class="fa-brands fa-linkedin-in" style="color:#0077b5;"></i>
+                </a>
+            {% endif %}
+
+            {% if social.platform == 'GitHub' %}
+                <a href="{{ social.link }}" target="_blank">
+                    <i class="fa-brands fa-github" style="color:#333;"></i>
+                </a>
+            {% endif %}
+
+            {% if social.platform == 'Facebook' %}
+                <a href="{{ social.link }}" target="_blank">
+                    <i class="fa-brands fa-facebook-f" style="color:#1877f2;"></i>
+                </a>
+            {% endif %}
+
+        {% endfor %}
+
+        </div>
+        </div>
+        <div class="hero-image">
+            <div class="profile-img-wrapper">
+                <img src="{{ profile.avatar.url }}" alt="{{ profile.fullname }}">
+            </div>
+        </div>
+    </main>
+
+    <section class="stats-container">
+        <div class="stat-item">
+            <div class="stat-icon icon-indigo">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <div class="stat-info">
+                <h3>5+</h3>
+                <p>Dự án hoàn thành</p>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="stat-item">
+            <div class="stat-icon icon-pink">
+                <i class="fa-solid fa-code-branch"></i>
+            </div>
+            <div class="stat-info">
+                <h3>10+</h3>
+                <p>Công nghệ đã sử dụng</p>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="stat-item">
+            <div class="stat-icon icon-blue">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div class="stat-info">
+                <h3>3+</h3>
+                <p>Chứng chỉ đạt được</p>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="stat-item">
+            <div class="stat-icon icon-green">
+                <i class="fa-solid fa-user-group"></i>
+            </div>
+            <div class="stat-info">
+                <h3>100%</h3>
+                <p>Nỗ lực mỗi ngày</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
