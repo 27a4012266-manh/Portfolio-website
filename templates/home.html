@@ -33,7 +33,6 @@
             <span class="welcome-badge">👋 Xin chào, mình là</span>
             <h1>{{ profile.fullname }}</h1>
             <h2>Full Stack Developer & Web Designer</h2>
-            <p>{{ profile.bio }}</p>
             <div class="cta-buttons">
                 <a href="{% url 'about' %}" class="btn-primary">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></a>
                 {% if profile.cv_file %}
