@@ -7,7 +7,7 @@
     <title>Portfolio Cá Nhân - Trang Chủ</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
@@ -21,9 +21,11 @@
             <a href="{% url 'blog' %}">Blog</a>
             <a href="{% url 'contact' %}">Contact</a>
         </div>
-        <a href="{{ profile.cv_file.url }}" class="btn-download-header" target="_blank">
-            <i class="fa-solid fa-download"></i> Download CV
-        </a>
+        {% if profile.cv_file %}
+            <a href="{{ profile.cv_file.url }}" class="btn-download-header" target="_blank">
+                <i class="fa-solid fa-download"></i> Download CV
+            </a>
+        {% endif %}
     </header>
 
     <main class="hero-container">
@@ -34,11 +36,12 @@
             <p>{{ profile.bio }}</p>
             <div class="cta-buttons">
                 <a href="{% url 'about' %}" class="btn-primary">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></a>
-                <a href="{{ profile.cv_file.url }}" class="btn-secondary" target="_blank">Tải CV <i class="fa-solid fa-download" style="font-size: 14px;"></i></a>
+                {% if profile.cv_file %}
+                    <a href="{{ profile.cv_file.url }}" class="btn-secondary" target="_blank">Tải CV <i class="fa-solid fa-download" style="font-size: 14px;"></i></a>
+                {% endif %}
             </div>
             <div class="social-links">
         {% for social in socials %}
-
             {% if social.platform == 'LinkedIn' %}
                 <a href="{{ social.link }}" target="_blank">
                     <i class="fa-brands fa-linkedin-in" style="color:#0077b5;"></i>
@@ -63,7 +66,9 @@
         </div>
         <div class="hero-image">
             <div class="profile-img-wrapper">
-                <img src="{{ profile.avatar.url }}" alt="{{ profile.fullname }}">
+                {% if profile.avatar %}
+                    <img src="{{ profile.avatar.url }}" alt="{{ profile.fullname }}">
+                {% endif %}
             </div>
         </div>
     </main>
@@ -110,6 +115,6 @@
         </div>
     </section>
 
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>

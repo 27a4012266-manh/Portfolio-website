@@ -7,7 +7,7 @@
     <title>Portfolio - Giới Thiệu & Kỹ Năng</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
@@ -21,34 +21,38 @@
             <a href="{% url 'blog' %}">Blog</a>
             <a href="{% url 'contact' %}">Contact</a>
         </div>
+        {% if profile.cv_file %}
         <a href="{{ profile.cv_file.url }}" class="btn-download-header" target="_blank">
             <i class="fa-solid fa-download"></i> Download CV
         </a>
+        {% endif %}
     </header>
 
     <section class="about-top-box">
         <div class="about-text">
             <span class="welcome-badge">👋 Xin chào, mình là</span>
             <h1>Giới thiệu <span>về tôi</span></h1>
-            <p>
-                {{ profile.bio }}
-            </p>
+            <p>{{ profile.bio }}</p>
             
             <div class="about-info-tags">
-                <div class="info-tag-item">
-                    <i class="fa-solid fa-location-dot"></i>
-                    {{ contact_info.address }}
-                </div>
-                <div class="info-tag-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    {{ contact_info.email }}
-                </div>
+                {% if contact_info %}
+                    <div class="info-tag-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        {{ contact_info.address }}
+                    </div>
+                    <div class="info-tag-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        {{ contact_info.email }}
+                    </div>
+                {% endif %}
             </div>
         </div>
 
         <div class="hero-image">
             <div class="profile-img-wrapper">
+                {% if profile.avatar %}
                 <img src="{{ profile.avatar.url }}" alt="{{ profile.fullname }}">
+                {% endif %}
             </div>
         </div>
     </section>
@@ -133,6 +137,6 @@
         </div>
     </section>
 
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>

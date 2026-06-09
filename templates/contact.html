@@ -1,255 +1,148 @@
+{% load static %}
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Contact</title>
-
-
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<link rel="stylesheet" href="style.css">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
 <header>
-    <div class="logo">Name</div>
-
-
-<div class="nav-center">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="skills.html">Skills</a>
-    <a href="projects.html">Projects</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html" class="active">Contact</a>
-</div>
-
-<a href="assets/CV_Resume.pdf" class="btn-download-header" target="_blank">
-    <i class="fa-solid fa-download"></i> Download CV
-</a>
-
-
+    <div class="logo">{{ profile.fullname }}</div>
+    <div class="nav-center">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'skills' %}">Skills</a>
+        <a href="{% url 'projects' %}">Projects</a>
+        <a href="{% url 'blog' %}">Blog</a>
+        <a href="{% url 'contact' %}" class="active">Contact</a>
+    </div>
+    {% if profile.cv_file %}
+    <a href="{{ profile.cv_file.url }}" class="btn-download-header" target="_blank">
+        <i class="fa-solid fa-download"></i> Download CV
+    </a>
+    {% endif %}
 </header>
 
 <section class="about-top-box">
+    <div class="about-text">
+        <span class="welcome-badge">Contact Me</span>
+        <h1>Liên hệ <span>với tôi</span></h1>
+        <p>Tôi luôn sẵn sàng kết nối, học hỏi và tham gia các cơ hội thực tập, dự án hoặc công việc liên quan đến Web Development, Data Analysis và FinTech.</p>
 
+        <div class="about-info-tags">
+            <div class="info-tag-item">
+                <i class="fa-solid fa-envelope"></i>
+                {{ contact_info.email }}
+            </div>
 
-<div class="about-text">
+            <div class="info-tag-item">
+                <i class="fa-solid fa-location-dot"></i>
+                {{ contact_info.address }}
+            </div>
 
-    <span class="welcome-badge">Contact Me</span>
-
-    <h1>Liên hệ <span>với tôi</span></h1>
-
-    <p>
-        Tôi luôn sẵn sàng kết nối, học hỏi và tham gia
-        các cơ hội thực tập, dự án hoặc công việc liên quan
-        đến Web Development, Data Analysis và FinTech.
-    </p>
-
-    <div class="about-info-tags">
-
-        <div class="info-tag-item">
-            <i class="fa-solid fa-envelope"></i>
-            your-luongthibichloan0811@gmail.com
+            <div class="info-tag-item">
+                <i class="fa-solid fa-phone"></i>
+                {{ contact_info.phone }}
+            </div>
         </div>
-
-        <div class="info-tag-item">
-            <i class="fa-solid fa-location-dot"></i>
-            Hà Nội, Việt Nam
-        </div>
-
-        <div class="info-tag-item">
-            <i class="fa-solid fa-phone"></i>
-            0123 456 789
-        </div>
-
     </div>
-
-</div>
-
-<div class="hero-image">
-    <div class="profile-img-wrapper">
-        <img src="assets/avatar.jpg" alt="Avatar">
+    <div class="hero-image">
+        <div class="profile-img-wrapper">
+            {% if profile.avatar %}
+            <img src="{{ profile.avatar.url }}" alt="Avatar">
+            {% endif %}
+        </div>
     </div>
-</div>
-
-
 </section>
 
 <section class="about-grid-sections">
-
-    <!-- Thông tin liên hệ -->
-
     <div class="section-card-box">
-
         <h2>
-            <div class="icon-wrap bg-purple-icon">
-                <i class="fa-solid fa-address-card"></i>
-            </div>
+            <div class="icon-wrap bg-purple-icon"><i class="fa-solid fa-address-card"></i></div>
             Thông tin liên hệ
         </h2>
-
-        <p><strong>Email:</strong> luongthibichloan0811@gmail.com</p>
-        <p><strong>Điện thoại:</strong> 0329401888</p>
-        <p><strong>Địa chỉ:</strong> Hà Nội, Việt Nam</p>
-
+        <p><strong>Email:</strong> {{ contact_info.email }}</p>
+        <p><strong>Điện thoại:</strong> {{ contact_info.phone }}</p>
+        <p><strong>Địa chỉ:</strong> {{ contact_info.address }}</p>
     </div>
 
-    <!-- Mạng xã hội -->
-
     <div class="section-card-box">
-
-    <h2>
-        <div class="icon-wrap bg-blue-icon">
-            <i class="fa-solid fa-share-nodes"></i>
-        </div>
-        Mạng xã hội
-    </h2>
-
-    <div class="social-links">
-
-        <a href="https://github.com/yourusername"
-           target="_blank"
-           class="social-icon">
-            <i class="fa-brands fa-github"></i>
-        </a>
-
-        <a href="https://linkedin.com/in/yourusername"
-           target="_blank"
-           class="social-icon">
-            <i class="fa-brands fa-linkedin"></i>
-        </a>
-
-        <a href="https://facebook.com/yourusername"
-           target="_blank"
-           class="social-icon">
-            <i class="fa-brands fa-facebook"></i>
-        </a>
-
-        <a href="mailto:luongthibichloan0811@gmail.com"
-           class="social-icon">
-            <i class="fa-solid fa-envelope"></i>
-        </a>
-
-    </div>
-
-</div>
-
-    <!-- Mục tiêu nghề nghiệp -->
-
-    <div class="section-card-box">
-
         <h2>
-            <div class="icon-wrap bg-purple-icon">
-                <i class="fa-solid fa-bullseye"></i>
-            </div>
+            <div class="icon-wrap bg-blue-icon"><i class="fa-solid fa-share-nodes"></i></div>
+            Mạng xã hội
+        </h2>
+        <div class="social-links">
+        {% for social in socials %}
+            {% if social.platform == 'GitHub' %}
+                <a href="{{ social.link }}" target="_blank" class="social-icon">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            {% endif %}
+            {% if social.platform == 'LinkedIn' %}
+                <a href="{{ social.link }}" target="_blank" class="social-icon">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+            {% endif %}
+            {% if social.platform == 'Facebook' %}
+                <a href="{{ social.link }}" target="_blank" class="social-icon">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="section-card-box">
+        <h2>
+            <div class="icon-wrap bg-purple-icon"><i class="fa-solid fa-bullseye"></i></div>
             Mục tiêu nghề nghiệp
         </h2>
-
-        <p>
-            Trở thành Full Stack Developer kết hợp
-            Data Analysis trong lĩnh vực FinTech,
-            xây dựng các sản phẩm công nghệ có giá trị thực tiễn
-            cho ngành tài chính – ngân hàng.
-        </p>
-
+        <p>Trở thành Full Stack Developer kết hợp Data Analysis trong lĩnh vực FinTech, xây dựng các sản phẩm công nghệ có giá trị thực tiễn cho ngành tài chính – ngân hàng.</p>
     </div>
-
 </section>
 
 <section class="contact-form-section">
-
     <div class="contact-form-box">
-
         <h2>Gửi tin nhắn cho tôi</h2>
-
         <form id="contactForm" method="POST">
-
+            {% csrf_token %}
             <div class="form-group">
-                <input
-                    type="text"
-                    name="full_name"
-                    placeholder="Họ và tên"
-                    required>
+                <input type="text" name="full_name" placeholder="Họ và tên" required>
             </div>
-
             <div class="form-group">
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    required>
+                <input type="email" name="email" placeholder="Email" required>
             </div>
-
             <div class="form-group">
-                <textarea
-                    name="message"
-                    rows="6"
-                    placeholder="Nội dung liên hệ"
-                    required></textarea>
+                <textarea name="message" rows="6" placeholder="Nội dung liên hệ" required></textarea>
             </div>
-
-            <button
-                type="submit"
-                class="btn-submit">
-                Gửi liên hệ
-            </button>
-            <p class="form-note">
-                Tôi sẽ phản hồi trong vòng 24 giờ.
-            </p>
+            <button type="submit" class="btn-submit">Gửi liên hệ</button>
+            <p class="form-note">Tôi sẽ phản hồi trong vòng 24 giờ.</p>
         </form>
-
     </div>
-
 </section>
 
 <section class="stats-container">
-
-
-<div class="stat-item">
-    <div class="stat-icon icon-indigo">
-        <i class="fa-solid fa-envelope"></i>
+    <div class="stat-item">
+        <div class="stat-icon icon-indigo"><i class="fa-solid fa-envelope"></i></div>
+        <div class="stat-info"><h3>24/7</h3><p>Sẵn sàng phản hồi</p></div>
     </div>
-    <div class="stat-info">
-        <h3>24/7</h3>
-        <p>Sẵn sàng phản hồi</p>
+    <div class="divider"></div>
+    <div class="stat-item">
+        <div class="stat-icon icon-pink"><i class="fa-solid fa-users"></i></div>
+        <div class="stat-info"><h3>100+</h3><p>Kết nối tương lai</p></div>
     </div>
-</div>
-
-<div class="divider"></div>
-
-<div class="stat-item">
-    <div class="stat-icon icon-pink">
-        <i class="fa-solid fa-users"></i>
+    <div class="divider"></div>
+    <div class="stat-item">
+        <div class="stat-icon icon-blue"><i class="fa-solid fa-handshake"></i></div>
+        <div class="stat-info"><h3>∞</h3><p>Cơ hội hợp tác</p></div>
     </div>
-    <div class="stat-info">
-        <h3>100+</h3>
-        <p>Kết nối tương lai</p>
-    </div>
-</div>
-
-<div class="divider"></div>
-
-<div class="stat-item">
-    <div class="stat-icon icon-blue">
-        <i class="fa-solid fa-handshake"></i>
-    </div>
-    <div class="stat-info">
-        <h3>∞</h3>
-        <p>Cơ hội hợp tác</p>
-    </div>
-</div>
-
-
 </section>
 
-<script src="script.js"></script>
-
+<script src="{% static 'script.js' %}"></script>
 </body>
 </html>

@@ -1,27 +1,18 @@
 from django.shortcuts import render
 from .models import *
 
-
-from django.shortcuts import render
-from .models import Profile, SocialMedia
-
 def home(request):
-
     profile = Profile.objects.first()
-
     socials = SocialMedia.objects.all()
-
     context = {
         'profile': profile,
         'socials': socials
     }
-
     return render(
         request,
         'home.html',
         context
     )
-
 
 def about(request):
 
@@ -51,44 +42,54 @@ def skills(request):
         skill_category='Other'
     )
 
-    context = {
-        'profile': profile,
-        'technical_skills': technical_skills,
-        'other_skills': other_skills,
-    }
-
-    return render(request, 'skills.html', context)
-
+    return render(
+        request,
+        'skills.html',
+        {
+            'profile': profile,
+            'technical_skills': technical_skills,
+            'other_skills': other_skills,
+        }
+    )
 
 def projects(request):
+    profile = Profile.objects.first()
     projects = Project.objects.all()
 
-    context = {
+    return render(request, 'projects.html', {
+        'profile': profile,
         'projects': projects
-    }
+    })
 
-    return render(request, 'projects.html', context)
-
-
-def blogs(request):
-    blogs = Blog.objects.all().order_by('-publish_date')
-
+def blog(request):
+    profile = Profile.objects.first()
+    blogs = Blog.objects.all()
     context = {
+        'profile': profile,
         'blogs': blogs
     }
+    return render(request, 'blog.html', context)
 
-    return render(request, 'blogs.html', context)
-
+from .models import *
 
 def contact(request):
-    contact_info = Contact.objects.first()
-    social_media = SocialMedia.objects.all()
+
+    profile = Profile.objects.first()
+    contact_info = ContactInfo.objects.first()
+    socials = SocialMedia.objects.all()
+
+    if request.method == "POST":
+
+        ContactMessage.objects.create(
+            full_name=request.POST.get('full_name'),
+            email=request.POST.get('email'),
+            message=request.POST.get('message')
+        )
 
     context = {
-        'contact': contact_info,
-        'social_media': social_media
+        'profile': profile,
+        'contact_info': contact_info,
+        'socials': socials,
     }
 
     return render(request, 'contact.html', context)
-
-
