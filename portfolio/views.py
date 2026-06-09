@@ -10,54 +10,30 @@ def home(request):
         'profile': profile,
         'socials': socials
     }
-    return render(
-        request,
-        'home.html',
-        context
-    )
+    return render(request, 'home.html', context)
 
 def about(request):
-
     profile = Profile.objects.first()
-
     contact_info = ContactInfo.objects.first()
-
     context = {
         'profile': profile,
         'contact_info': contact_info
     }
-
-    return render(
-        request,
-        'about.html',
-        context
-    )
+    return render(request, 'about.html', context)
 
 def skills(request):
     profile = Profile.objects.first()
-
     technical_skills = Skill.objects.filter(
         skill_category='Technical'
     )
-
     other_skills = Skill.objects.filter(
         skill_category='Other'
     )
-
-    return render(
-        request,
-        'skills.html',
-        {
-            'profile': profile,
-            'technical_skills': technical_skills,
-            'other_skills': other_skills,
-        }
-    )
+    return render(request, 'skills.html', {'profile': profile, 'technical_skills': technical_skills, 'other_skills': other_skills,})
 
 def projects(request):
     profile = Profile.objects.first()
     projects = Project.objects.all()
-
     return render(request, 'projects.html', {
         'profile': profile,
         'projects': projects
