@@ -1,5 +1,5 @@
+{% load static %}
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -11,33 +11,32 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 
 </head>
 <body>
 
 <header>
-    <div class="logo">Name</div>
+    <div class="logo">{{ profile.fullname }}</div>
 
 
 <div class="nav-center">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="skills.html" class="active">Skills</a>
-    <a href="projects.html">Projects</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'about' %}">About</a>
+    <a href="{% url 'skills' %}" class="active">Skills</a>
+    <a href="{% url 'projects' %}">Projects</a>
+    <a href="{% url 'blogs' %}">Blog</a>
+    <a href="{% url 'contact' %}">Contact</a>
 </div>
 
-<a href="assets/CV_Resume.pdf" class="btn-download-header" target="_blank">
+<a href="{{ profile.cv_file.url }}" class="btn-download-header" target="_blank">
     <i class="fa-solid fa-download"></i> Download CV
 </a>
 
 </header>
 
 <section class="about-top-box">
-
 
 <div class="about-text">
     <span class="welcome-badge">My Skills</span>
@@ -77,7 +76,7 @@
 
 <div class="hero-image">
     <div class="profile-img-wrapper">
-        <img src="assets/avatar.jpg" alt="Avatar">
+        <img src="{{ profile.avatar.url }}" alt="{{ profile.fullname }}">
     </div>
 </div>
 
@@ -85,97 +84,44 @@
 </section>
 
 <section class="about-grid-sections">
-<div class="section-card-box">
+        <div class="section-card-box">
 
-    <h2>
-        <div class="icon-wrap bg-purple-icon">
-            <i class="fa-solid fa-laptop-code"></i>
-        </div>
-        Technical Skills
-    </h2>
-    <div class="skills-list-grid">
-
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#e34f26;">
-                    <i class="fa-brands fa-html5"></i>
+            <h2>
+                <div class="icon-wrap bg-purple-icon">
+                    <i class="fa-solid fa-laptop-code"></i>
                 </div>
-                <span>HTML5</span>
-                <span class="skill-percent">90%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:90%;"></div>
-            </div>
-        </div>
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#1572b6;">
-                    <i class="fa-brands fa-css3-alt"></i>
+                Technical Skills
+            </h2>
+            <div class="skills-list-grid">
+
+            {% for skill in technical_skills %}
+
+                <div class="skill-item-card">
+
+                    <div class="skill-header">
+
+                        <span>{{ skill.skill_name }}</span>
+
+                        <span class="skill-percent">
+                            {{ skill.skill_percent }}%
+                        </span>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill" style="width: {{ skill.skill_percent }}%;"></div>
+
+                    </div>
+
                 </div>
-                <span>CSS3</span>
-                <span class="skill-percent">85%</span>
+
+            {% endfor %}
+
             </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:85%;"></div>
-            </div>
+
         </div>
 
-
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#f7df1e;">
-                    <i class="fa-brands fa-js"></i>
-                </div>
-                <span>JavaScript</span>
-                <span class="skill-percent">80%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:80%;"></div>
-            </div>
-        </div>
-
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#3776ab;">
-                    <i class="fa-brands fa-python"></i>
-                </div>
-                <span>Python</span>
-                <span class="skill-percent">75%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:75%;"></div>
-            </div>
-        </div>
-
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#092e20;">
-                    <i class="fa-solid fa-server"></i>
-                </div>
-                <span>Django</span>
-                <span class="skill-percent">70%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:70%;"></div>
-            </div>
-        </div>
-
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#336791;">
-                    <i class="fa-solid fa-database"></i>
-                </div>
-                <span>SQL Database</span>
-                <span class="skill-percent">80%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:80%;"></div>
-            </div>
-        </div>
-
-    </div>
-
-</div>
 
 <div class="section-card-box">
 
@@ -188,83 +134,31 @@
 
     <div class="skills-list-grid">
 
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#24292e;">
-                    <i class="fa-brands fa-github"></i>
-                </div>
-                <span>Git & GitHub</span>
-                <span class="skill-percent">60%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:60%;"></div>
-            </div>
-        </div>
+        {% for skill in other_skills %}
 
         <div class="skill-item-card">
+
             <div class="skill-header">
-                <div class="sk-icon" style="color:#217346;">
-                    <i class="fa-solid fa-file-excel"></i>
-                </div>
-                <span>Excel</span>
-                <span class="skill-percent">95%</span>
+
+                <span>{{ skill.skill_name }}</span>
+
+                <span class="skill-percent">
+                    {{ skill.skill_percent }}%
+                </span>
+
             </div>
+
             <div class="progress-bar">
-                <div class="progress-fill" style="width:95%;"></div>
+
+                <div class="progress-fill"
+                    style="width:{{ skill.skill_percent }}%;">
+                </div>
+
             </div>
+
         </div>
 
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#2563eb;">
-                    <i class="fa-solid fa-chart-column"></i>
-                </div>
-                <span>Data Analysis</span>
-                <span class="skill-percent">70%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:70%;"></div>
-            </div>
-        </div>
-
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#0d9488;">
-                    <i class="fa-solid fa-wallet"></i>
-                </div>
-                <span>FinTech Knowledge</span>
-                <span class="skill-percent">80%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:80%;"></div>
-            </div>
-        </div>
-
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#9333ea;">
-                    <i class="fa-solid fa-people-group"></i>
-                </div>
-                <span>Teamwork</span>
-                <span class="skill-percent">100%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:100%;"></div>
-            </div>
-        </div>
-
-        <div class="skill-item-card">
-            <div class="skill-header">
-                <div class="sk-icon" style="color:#dc2626;">
-                    <i class="fa-solid fa-lightbulb"></i>
-                </div>
-                <span>Problem Solving</span>
-                <span class="skill-percent">90%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:90%;"></div>
-            </div>
-        </div>
+        {% endfor %}
 
     </div>
 
@@ -272,7 +166,7 @@
 
 </section>
 
-<script src="script.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>

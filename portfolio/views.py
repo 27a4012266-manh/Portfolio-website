@@ -40,12 +40,21 @@ def about(request):
         context
     )
 
-
 def skills(request):
-    skills = Skill.objects.all()
+    profile = Profile.objects.first()
+
+    technical_skills = Skill.objects.filter(
+        skill_category='Technical'
+    )
+
+    other_skills = Skill.objects.filter(
+        skill_category='Other'
+    )
 
     context = {
-        'skills': skills
+        'profile': profile,
+        'technical_skills': technical_skills,
+        'other_skills': other_skills,
     }
 
     return render(request, 'skills.html', context)
