@@ -63,10 +63,10 @@ def projects(request):
 
 def blog(request):
     profile = Profile.objects.first()
-    blogs = Blog.objects.all()
+    blog = Blog.objects.all()
     context = {
         'profile': profile,
-        'blogs': blogs
+        'blog': blog
     }
     return render(request, 'blog.html', context)
 
