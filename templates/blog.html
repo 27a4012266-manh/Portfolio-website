@@ -45,20 +45,20 @@
 </section>
 
 <section class="about-grid-sections">
-{% for blog in blogs %}
-<a href="{{ blog.link }}" target="_blank" class="blog-link">
+{% for item in blog %}
+<a href="{{ item.link }}" target="_blank" class="blog-link">
     <div class="section-card-box">
         <h2>
             <div class="icon-wrap bg-purple-icon">
                 <i class="fa-solid fa-book"></i>
             </div>
-            {{ blog.title }}
+            {{ item.title }}
         </h2>
         <p>
-            {{ blog.content|truncatewords:20 }}
+            {{ item.content|truncatewords:20 }}
         </p>
         <small>
-            {{ blog.publish_date|date:"d/m/Y" }}
+            {{ item.publish_date|date:"d/m/Y" }}
         </small>
 
         <p class="read-more">
