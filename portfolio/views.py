@@ -73,6 +73,7 @@ def blog(request):
     return render(request, 'blog.html', context)
 
 def contact(request):
+    profile = Profile.objects.first()
     form = ContactMessageForm()
     if request.method == 'POST':
         form = ContactMessageForm(request.POST)
@@ -82,4 +83,4 @@ def contact(request):
             return redirect('contact')
         else:
             messages.error(request, 'Vui lòng kiểm tra lại thông tin.')
-    return render(request, 'contact.html', {'form': form})
+    return render(request, 'contact.html', {'form': form, 'profile': profile})
