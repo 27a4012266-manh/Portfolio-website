@@ -49,14 +49,14 @@
     <div class="section-card-box">
         {% if project.thumbnail %}
         <img src="{{ project.thumbnail.url }}"
-            alt="{{ project.Project_title }}"
+            alt="{{ project.title }}"
             class="project-thumbnail">
         {% endif %}
         <h2>
             <div class="icon-wrap bg-purple-icon">
                 <i class="fa-solid fa-folder-open"></i>
             </div>
-            {{ project.Project_title }}
+            {{ project.title }}
         </h2>
         <p>
             {{ project.short_description }}
