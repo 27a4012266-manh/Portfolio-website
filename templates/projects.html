@@ -1,256 +1,130 @@
+{% load static %}
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Projects</title>
-
-
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<link rel="stylesheet" href="style.css">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
 <header>
-    <div class="logo">Name</div>
-
-
-<div class="nav-center">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="skills.html">Skills</a>
-    <a href="projects.html" class="active">Projects</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
-</div>
-
-<a href="assets/CV_Resume.pdf" class="btn-download-header" target="_blank">
-    <i class="fa-solid fa-download"></i> Download CV
-</a>
-
-
+    <div class="logo">{{ profile.fullname }}</div>
+    <div class="nav-center">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'skills' %}">Skills</a>
+        <a href="{% url 'projects' %}" class="active">Projects</a>
+        <a href="{% url 'blog' %}">Blog</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </div>
+    {% if profile.cv_file %}
+    <a href="{{ profile.cv_file.url }}" class="btn-download-header" target="_blank">
+        <i class="fa-solid fa-download"></i> Download CV
+    </a>
+    {% endif %}
 </header>
 
 <section class="about-top-box">
-
-
-<div class="about-text">
-
-    <span class="welcome-badge">My Projects</span>
-
-    <h1>Dự án <span>của tôi</span></h1>
-
-    <p>
-        Đây là những dự án cá nhân và học tập mà tôi đã thực hiện
-        trong quá trình học tập và phát triển kỹ năng lập trình.
-    </p>
-
-    <p style="margin-top:12px;">
-        Thông qua các dự án này, tôi đã có cơ hội thực hành xây dựng
-        giao diện web, xử lý dữ liệu, thiết kế cơ sở dữ liệu và áp dụng
-        các công nghệ hiện đại vào giải quyết các bài toán thực tế.
-    </p>
-
-</div>
-
-<div class="hero-image">
-    <div class="profile-img-wrapper">
-        <img src="assets/avatar.jpg" alt="Avatar">
+    <div class="about-text">
+        <span class="welcome-badge">My Projects</span>
+        <h1>Dự án <span>của tôi</span></h1>
+        <p>Đây là những dự án cá nhân và học tập mà tôi đã thực hiện trong quá trình học tập và phát triển kỹ năng lập trình.</p>
+        <p style="margin-top:12px;">Thông qua các dự án này, tôi đã có cơ hội thực hành xây dựng giao diện web, xử lý dữ liệu, thiết kế cơ sở dữ liệu và áp dụng các công nghệ hiện đại vào giải quyết các bài toán thực tế.</p>
     </div>
-</div>
-
-
+    <div class="hero-image">
+        <div class="profile-img-wrapper">
+            {% if profile.avatar %}
+            <img src="{{ profile.avatar.url }}" alt="Avatar">
+            {% endif %}
+        </div>
+    </div>
 </section>
 
 <section class="about-grid-sections">
 
-<div class="section-card-box">
-    <img src="assets/Screenshot 2026-06-08 084530.png" alt="Personal Portfolio Website" class="project-thumbnail">
-    <h2>
-        <div class="icon-wrap bg-purple-icon">
-            <i class="fa-solid fa-globe"></i>
+    <div class="section-card-box">
+        <img src="{% static 'portfolio/assets/Screenshot 2026-06-08 084530.png' %}" alt="Personal Portfolio Website" class="project-thumbnail">
+        <h2>
+            <div class="icon-wrap bg-purple-icon"><i class="fa-solid fa-globe"></i></div>
+            Personal Portfolio Website
+        </h2>
+        <p>Website portfolio cá nhân được xây dựng bằng HTML, CSS và JavaScript nhằm giới thiệu bản thân, kỹ năng và các dự án đã thực hiện.</p>
+        <br>
+        <p><strong>Công nghệ:</strong> HTML, CSS, JavaScript</p>
+        <div class="project-links">
+            <a href="https://example.com" target="_blank" class="demo-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            <a href="https://github.com/username/project" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> GitHub</a>
         </div>
-        Personal Portfolio Website
-    </h2>
-    <p>
-        Website portfolio cá nhân được xây dựng bằng HTML, CSS và JavaScript
-        nhằm giới thiệu bản thân, kỹ năng và các dự án đã thực hiện.
-    </p>
-    <br>
-    <p><strong>Công nghệ:</strong> HTML, CSS, JavaScript</p>
-    <div class="project-links">
-
-        <a href="https://example.com"
-           target="_blank"
-           class="demo-btn">
-
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            Live Demo
-        </a>
-
-        <a href="https://github.com/username/project"
-           target="_blank"
-           class="github-btn">
-
-            <i class="fa-brands fa-github"></i>
-            GitHub
-        </a>
-
     </div>
-</div>
 
-<div class="section-card-box">
-    <img src="assets/banking interest calculator.jpg" alt="Banking Interest Calculator" class="project-thumbnail">
-    <h2>
-        <div class="icon-wrap bg-blue-icon">
-            <i class="fa-solid fa-calculator"></i>
+    <div class="section-card-box">
+        <img src="{% static 'portfolio/assets/banking interest calculator.jpg' %}" alt="Banking Interest Calculator" class="project-thumbnail">
+        <h2>
+            <div class="icon-wrap bg-blue-icon"><i class="fa-solid fa-calculator"></i></div>
+            Banking Interest Calculator
+        </h2>
+        <p>Ứng dụng tính lãi suất ngân hàng hỗ trợ tính lãi đơn, lãi kép và các khoản vay trả góp.</p>
+        <br>
+        <p><strong>Công nghệ:</strong> JavaScript, HTML, CSS</p>
+        <div class="project-links">
+            <a href="https://example.com" target="_blank" class="demo-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            <a href="https://github.com/username/project" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> GitHub</a>
         </div>
-        Banking Interest Calculator
-    </h2>
-
-    <p>
-        Ứng dụng tính lãi suất ngân hàng hỗ trợ tính lãi đơn,
-        lãi kép và các khoản vay trả góp.
-    </p>
-    <br>
-    <p><strong>Công nghệ:</strong> JavaScript, HTML, CSS</p>
-    <div class="project-links">
-
-        <a href="https://example.com"
-           target="_blank"
-           class="demo-btn">
-
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            Live Demo
-        </a>
-
-        <a href="https://github.com/username/project"
-           target="_blank"
-           class="github-btn">
-
-            <i class="fa-brands fa-github"></i>
-            GitHub
-        </a>
-
     </div>
-</div>
 
-<div class="section-card-box">
-    <img src="assets/Student-Management-System.png" alt="Student Management System" class="project-thumbnail">
-    <h2>
-        <div class="icon-wrap bg-purple-icon">
-            <i class="fa-solid fa-database"></i>
+    <div class="section-card-box">
+        <img src="{% static 'portfolio/assets/Student-Management-System.png' %}" alt="Student Management System" class="project-thumbnail">
+        <h2>
+            <div class="icon-wrap bg-purple-icon"><i class="fa-solid fa-database"></i></div>
+            Student Management System
+        </h2>
+        <p>Hệ thống quản lý sinh viên cho phép lưu trữ, tìm kiếm và cập nhật thông tin sinh viên.</p>
+        <br>
+        <p><strong>Công nghệ:</strong> SQL, Python</p>
+        <div class="project-links">
+            <a href="https://example.com" target="_blank" class="demo-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            <a href="https://github.com/username/project" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> GitHub</a>
         </div>
-        Student Management System
-    </h2>
-
-    <p>
-        Hệ thống quản lý sinh viên cho phép lưu trữ,
-        tìm kiếm và cập nhật thông tin sinh viên.
-    </p>
-    <br>
-    <p><strong>Công nghệ:</strong> SQL, Python</p>
-    <div class="project-links">
-
-        <a href="https://example.com"
-           target="_blank"
-           class="demo-btn">
-
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            Live Demo
-        </a>
-
-        <a href="https://github.com/username/project"
-           target="_blank"
-           class="github-btn">
-
-            <i class="fa-brands fa-github"></i>
-            GitHub
-        </a>
     </div>
-</div>
 
-<div class="section-card-box">
-    <img src="assets/financial data analysis.png" alt="Financial Data Analysis" class="project-thumbnail">
-    <h2>
-        <div class="icon-wrap bg-blue-icon">
-            <i class="fa-solid fa-chart-column"></i>
+    <div class="section-card-box">
+        <img src="{% static 'portfolio/assets/financial data analysis.png' %}" alt="Financial Data Analysis" class="project-thumbnail">
+        <h2>
+            <div class="icon-wrap bg-blue-icon"><i class="fa-solid fa-chart-column"></i></div>
+            Financial Data Analysis
+        </h2>
+        <p>Dự án phân tích dữ liệu tài chính nhằm hỗ trợ trực quan hóa dữ liệu và đưa ra các báo cáo tổng hợp.</p>
+        <br>
+        <p><strong>Công nghệ:</strong> Python, Excel, SQL</p>
+        <div class="project-links">
+            <a href="https://example.com" target="_blank" class="demo-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            <a href="https://github.com/username/project" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> GitHub</a>
         </div>
-        Financial Data Analysis
-    </h2>
-
-    <p>
-        Dự án phân tích dữ liệu tài chính nhằm hỗ trợ
-        trực quan hóa dữ liệu và đưa ra các báo cáo tổng hợp.
-    </p>
-    <br>
-    <p><strong>Công nghệ:</strong> Python, Excel, SQL</p>
-    <div class="project-links">
-        <a href="https://example.com"
-           target="_blank"
-           class="demo-btn">
-
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            Live Demo
-        </a>
-        <a href="https://github.com/username/project"
-           target="_blank"
-           class="github-btn">
-
-            <i class="fa-brands fa-github"></i>
-            GitHub
-        </a>
     </div>
-</div>
-
 
 </section>
 
 <section class="stats-container">
-<div class="stat-item">
-    <div class="stat-icon icon-indigo">
-        <i class="fa-solid fa-folder-open"></i>
+    <div class="stat-item">
+        <div class="stat-icon icon-indigo"><i class="fa-solid fa-folder-open"></i></div>
+        <div class="stat-info"><h3>4+</h3><p>Dự án tiêu biểu</p></div>
     </div>
-    <div class="stat-info">
-        <h3>4+</h3>
-        <p>Dự án tiêu biểu</p>
+    <div class="divider"></div>
+    <div class="stat-item">
+        <div class="stat-icon icon-pink"><i class="fa-solid fa-code"></i></div>
+        <div class="stat-info"><h3>6+</h3><p>Công nghệ sử dụng</p></div>
     </div>
-</div>
-
-<div class="divider"></div>
-
-<div class="stat-item">
-    <div class="stat-icon icon-pink">
-        <i class="fa-solid fa-code"></i>
+    <div class="divider"></div>
+    <div class="stat-item">
+        <div class="stat-icon icon-blue"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="stat-info"><h3>100%</h3><p>Học hỏi và phát triển</p></div>
     </div>
-    <div class="stat-info">
-        <h3>6+</h3>
-        <p>Công nghệ sử dụng</p>
-    </div>
-</div>
-
-<div class="divider"></div>
-
-<div class="stat-item">
-    <div class="stat-icon icon-blue">
-        <i class="fa-solid fa-laptop-code"></i>
-    </div>
-    <div class="stat-info">
-        <h3>100%</h3>
-        <p>Học hỏi và phát triển</p>
-    </div>
-</div>
-
-
 </section>
 
-<script src="script.js"></script>
-
+<script src="{% static 'script.js' %}"></script>
 </body>
 </html>
