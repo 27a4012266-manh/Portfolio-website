@@ -54,7 +54,7 @@
     <div class="hero-image">
         <div class="profile-img-wrapper">
             {% if profile.avatar %}
-            <img src="{{ profile.avatar.url }}" alt="Avatar">
+            <img src="{{ profile.avatar.url }}" alt="{{ profile.fullname }}">
             {% endif %}
         </div>
     </div>
