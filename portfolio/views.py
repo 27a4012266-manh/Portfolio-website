@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import *
+from django.contrib import messages
 from .models import *
 
 def home(request):
@@ -70,26 +72,14 @@ def blog(request):
     }
     return render(request, 'blog.html', context)
 
-from .models import *
-
 def contact(request):
-
-    profile = Profile.objects.first()
-    contact_info = ContactInfo.objects.first()
-    socials = SocialMedia.objects.all()
-
-    if request.method == "POST":
-
-        ContactMessage.objects.create(
-            full_name=request.POST.get('full_name'),
-            email=request.POST.get('email'),
-            message=request.POST.get('message')
-        )
-
-    context = {
-        'profile': profile,
-        'contact_info': contact_info,
-        'socials': socials,
-    }
-
-    return render(request, 'contact.html', context)
+    form = ContactMessageForm()
+    if request.method == 'POST':
+        form = ContactMessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Gửi tin nhắn thành công!')
+            return redirect('contact')
+        else:
+            messages.error(request, 'Vui lòng kiểm tra lại thông tin.')
+    return render(request, 'contact.html', {'form': form})
