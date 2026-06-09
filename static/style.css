@@ -709,19 +709,6 @@ header {
     margin-bottom:20px;
 }
 
-.contact-form-box input,
-.contact-form-box textarea{
-
-    width:100%;
-    padding:12px;
-    margin-bottom:15px;
-
-    border:1px solid #ddd;
-    border-radius:10px;
-
-    font-family:inherit;
-}
-
 .contact-form-box button{
 
     background:#8b5cf6;
@@ -772,4 +759,27 @@ header {
     transform:translateY(-5px);
     background:#7c5cff;
     color:white;
+}
+.contact-form-box input,
+.contact-form-box textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.contact-form-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.errorlist {
+    color: #e74c3c;
+    list-style: none;
+    padding: 0;
+    margin: -15px 0 15px 0;
+    font-size: 13px;
 }
