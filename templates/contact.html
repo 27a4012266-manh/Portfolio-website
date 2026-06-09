@@ -109,16 +109,22 @@
 <section class="contact-form-section">
     <div class="contact-form-box">
         <h2>Gửi tin nhắn cho tôi</h2>
-        <form id="contactForm" method="POST">
+        <form method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <input type="text" name="full_name" placeholder="Họ và tên" required>
+                {{ form.full_name.label_tag }}
+                {{ form.full_name }}
+                {{ form.full_name.errors }}
             </div>
             <div class="form-group">
-                <input type="email" name="email" placeholder="Email" required>
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
             </div>
             <div class="form-group">
-                <textarea name="message" rows="6" placeholder="Nội dung liên hệ" required></textarea>
+                {{ form.message.label_tag }}
+                {{ form.message }}
+                {{ form.message.errors }}
             </div>
             <button type="submit" class="btn-submit">Gửi liên hệ</button>
             <p class="form-note">Tôi sẽ phản hồi trong vòng 24 giờ.</p>
