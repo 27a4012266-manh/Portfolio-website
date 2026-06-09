@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,21 +7,21 @@
     <title>Portfolio - Giới Thiệu & Kỹ Năng</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
     <header>
-        <div class="logo">Name</div>
+        <div class="logo">{{ profile.fullname }}</div>
         <div class="nav-center">
-            <a href="index.html">Home</a>
-            <a href="about.html" class="active">About</a>
-            <a href="skills.html">Skills</a>
-            <a href="projects.html">Projects</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}" class="active">About</a>
+            <a href="{% url 'skills' %}">Skills</a>
+            <a href="{% url 'projects' %}">Projects</a>
+            <a href="{% url 'blog' %}">Blog</a>
+            <a href="{% url 'contact' %}">Contact</a>
         </div>
-        <a href="assets/CV_Resume.pdf" class="btn-download-header" target="_blank">
+        <a href="{{ profile.cv_file.url }}" class="btn-download-header" target="_blank">
             <i class="fa-solid fa-download"></i> Download CV
         </a>
     </header>
@@ -29,23 +30,25 @@
         <div class="about-text">
             <span class="welcome-badge">👋 Xin chào, mình là</span>
             <h1>Giới thiệu <span>về tôi</span></h1>
-            <p>Tôi là sinh viên năm cuối chuyên ngành Công nghệ Tài chính tại Học Viện Ngân Hàng, Hà Nội. Với niềm yêu thích công nghệ và mong muốn ứng dụng công nghệ vào lĩnh vực tài chính hiện đại, tôi đang định hướng phát triển bản thân theo lĩnh vực Web Development, Mobile Application và Data Analysis.</p>
-            <p style="margin-top: 12px;">Trong quá trình học tập, tôi đã chủ động tìm hiểu và xây dựng nền tảng kiến thức về lập trình web thông qua các công nghệ như HTML, CSS, JavaScript, Python và Django. Bên cạnh đó, tôi cũng dành thời gian nghiên cứu về cơ sở dữ liệu SQL, phân tích dữ liệu và các hệ thống công nghệ ứng dụng trong FinTech. Tôi thường xuyên tham gia các khóa học trực tuyến và thực hiện các dự án cá nhân để nâng cao kỹ năng thực tế.</p>
-            <p style="margin-top: 12px;">Mục tiêu của tôi trong thời gian tới là tiếp tục hoàn thiện kỹ năng lập trình, tích lũy kinh nghiệm thực tế thông qua môi trường doanh nghiệp và phát triển theo định hướng Fullstack Developer kết hợp Data Analyst trong lĩnh vực FinTech. Tôi tin rằng sự kết hợp giữa nền tảng Công nghệ Tài chính và kỹ năng lập trình sẽ giúp tôi có khả năng thích nghi tốt với xu hướng chuyển đổi số hiện nay, đồng thời tạo ra những sản phẩm công nghệ mang tính ứng dụng và giá trị thực tiễn cao.</p>
+            <p>
+                {{ profile.bio }}
+            </p>
             
             <div class="about-info-tags">
                 <div class="info-tag-item">
-                    <i class="fa-solid fa-location-dot"></i> Hà Nội, Việt Nam
+                    <i class="fa-solid fa-location-dot"></i>
+                    {{ contact_info.address }}
                 </div>
                 <div class="info-tag-item">
-                    <i class="fa-solid fa-envelope"></i> name@email.com
+                    <i class="fa-solid fa-envelope"></i>
+                    {{ contact_info.email }}
                 </div>
             </div>
         </div>
 
         <div class="hero-image">
             <div class="profile-img-wrapper">
-                <img src="assets/avatar.jpg" alt="Avatar">
+                <img src="{{ profile.avatar.url }}" alt="{{ profile.fullname }}">
             </div>
         </div>
     </section>
@@ -130,6 +133,6 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

@@ -1,25 +1,44 @@
 from django.shortcuts import render
-from .models import Profile, Skill, Project, Blog, Contact, SocialMedia
+from .models import *
 
+
+from django.shortcuts import render
+from .models import Profile, SocialMedia
 
 def home(request):
+
     profile = Profile.objects.first()
 
+    socials = SocialMedia.objects.all()
+
     context = {
-        'profile': profile
+        'profile': profile,
+        'socials': socials
     }
 
-    return render(request, 'home.html', context)
+    return render(
+        request,
+        'home.html',
+        context
+    )
 
 
 def about(request):
+
     profile = Profile.objects.first()
 
+    contact_info = ContactInfo.objects.first()
+
     context = {
-        'profile': profile
+        'profile': profile,
+        'contact_info': contact_info
     }
 
-    return render(request, 'about.html', context)
+    return render(
+        request,
+        'about.html',
+        context
+    )
 
 
 def skills(request):
