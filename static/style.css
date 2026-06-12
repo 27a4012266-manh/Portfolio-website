@@ -533,9 +533,14 @@ header {
 
 .skill-header{
     display:grid;
-    grid-template-columns:60px 1fr auto;
+    grid-template-columns:1fr auto;
     align-items:center;
     gap:12px;
+}
+.skill-header span:first-child{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
 /* =========================
